@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="be">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Дзяды | Музыка Вершаў</title>
+    <meta property="og:title" content="Дзяды | Музыка Вершаў" />
+
+    <meta
+      property="og:description"
+      content="Музычны цыкл да сьвята Дзяды паводле твораў беларускіх аўтараў XIX–XX стагоддзяў."
+    />
+
+    <meta
+      property="og:image"
+      content="https://muzykaviersau.github.io/dziady-26/cover.jpg"
+    />
+
+    <meta property="og:type" content="website" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(210, 150, 60, 0.15),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 80% 40%,
+            rgba(210, 150, 60, 0.1),
+            transparent 30%
+          ),
+          #080808;
+      }
+      h2 {
+        color: #d8b36a;
+        font-size: 32px;
+      }
+      .player {
+        width: 100%;
+        margin: 20px 0;
+      }
+      #currentTrack {
+        color: #d9c39a;
+        font-size: 24px;
+        font-weight: 600;
+        margin: 15px 0;
+      }
+      .track-marquee {
+        position: relative;
+        overflow: hidden;
+        width: 438px;
+        height: 40px;
+        margin-top: 15px;
+      }
+
+      .track-marquee span {
+        position: absolute;
+        white-space: nowrap;
+        animation: marquee 12s linear infinite;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(20%);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .track {
+        background: rgba(40, 40, 45, 0.85);
+        padding: 6px 12px;
+        margin: 4px 0;
+        border-radius: 10px;
+        cursor: pointer;
+        color: #f5f5f5;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .track:hover {
+        background: #2e2e2e;
+      }
+
+      .active {
+        background: #7a5228;
+        box-shadow: 0 0 15px rgba(216, 179, 106, 0.25);
+      }
+
+      .author {
+        color: #d8c5a0;
+        font-size: 0.9em;
+      }
+
+      .now {
+        color: #d8d8d8;
+        font-size: 1.05em;
+        width: 450px;
+      }
+      .layout {
+        display: flex;
+        gap: 40px;
+        max-width: 1400px;
+        margin: auto;
+        align-items: flex-start;
+      }
+      .title {
+        font-size: 82px;
+        font-weight: 700;
+        color: #d9c39a;
+        margin: 0;
+        line-height: 1;
+      }
+
+      .subtitle {
+        font-size: 9px;
+        color: #c9c9c9;
+        margin-top: -15px;
+        margin-left: 107px;
+      }
+      .left {
+        border-right: 1px solid rgba(216, 179, 106, 0.25);
+        padding-right: 80px;
+        padding-left: 20px;
+        flex: 5;
+      }
+
+      .right h1 {
+        color: #d9c39a;
+        text-shadow: 0 0 10px rgba(217, 195, 154, 0.25);
+      }
+      .right {
+        transform: translate(30px, 0px);
+      }
+      .description {
+        width: 500px;
+        max-width: 500px;
+
+        margin: 1px auto;
+
+        padding: 78% 4% 15% 20%;
+
+        color: #f0f0f0;
+        font-family: Inter;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.5;
+        letter-spacing: 0px;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.82)),
+          url("kurapaty.jpg");
+        background-size: cover;
+        background-position: center 28%;
+        background-repeat: no-repeat;
+
+        border-right: 3px solid #c18b3a;
+        border-radius: 12px;
+      }
+
+      .description p {
+        margin-bottom: 8px;
+        width: 100%;
+        max-width: none;
+      }
+      #visualizer {
+        width: 100%;
+        height: 80px;
+        display: block;
+        margin: 25px 0 15px 0;
+      }
+      .cover {
+        width: 100%;
+        max-width: 80px;
+        border-radius: 12px;
+        display: block;
+        margin: auto;
+      }
+      .hero {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .mini-cover {
+        width: 300px;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 12px;
+        flex-shrink: 0;
+      }
+
+      .hero-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 10px;
+      }
+
+      .hero-info h1 {
+        padding-left: 40px;
+        margin: 0 0 10px;
+      }
+
+     @media (max-width: 900px) {
+        .layout {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .active{
+    background:#7a5228 !important;
+    box-shadow:0 0 15px rgba(216,179,106,.25) !important;
+}
+        .left {
+          border-right: none;
+          padding-right: 0;
+          width: 100%;
+        }
+        .title{
+    display:none;
+}
+        .subtitle{
+    display:none;
+}
+        .right {
+          flex: 2;
+        }
+
+        .cover {
+          max-width: 350px;
+        }
+        #visualizer{
+          display:none;
+        }
+       .now{
+    display:none;
+}
+       .track-marquee{
+    display:none;
+}
+        .description {
+          width: auto;
+          max-width: none;
+          margin: 20px 0;
+        }
+
+        h1 {
+          font-size: 42px;
+        }
+
+        h2 {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <div class="left">
+        <div class="hero">
+          <img src="cover.jpg" class="mini-cover" />
+
+          <div class="hero-info">
+            <h1 class="title">Дзяды</h1>
+            <div class="subtitle">1 лістапад 2026</div>
+            <canvas id="visualizer"></canvas>
+            <div class="now">
+              <div class="track-marquee">
+                <span id="currentTrack"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2></h2>
+
+        <div id="playlist"></div>
+
+        <audio id="player" controls class="player"></audio>
+        <p style="text-align: center; font-size: 12px; color: #999">
+          Музыка створана пры дапамозе
+          <a
+            href="https://meloflow.ai"
+            target="_blank"
+            style="color: #b8843c; text-decoration: none"
+          >
+            MeloFlow
+          </a>
+        </p>
+      </div>
+      <div class="right">
+        <div class="description">
+          <p>
+            🕯️ <strong>Дзяды</strong> - гэта ня толькі памяць пра далёкіх
+            продкаў. Гэта таксама дзень, калі мы ўзгадваем усіх беларусаў, якія
+            ў розныя часы аддавалі свае сілы, талент, свабоду і жыцьцё дзеля
+            таго, каб жыла Беларусь.
+          </p>
+
+          <p>
+            У гэтай падборцы сабраны музычныя інтэрпрэтацыі твораў беларускіх
+            аўтараў. Іх словы дайшлі да нас насуперак войнам, забаронам, ссылкам
+            і спробам сьцерці нашу памяць і нашую мову.
+          </p>
+
+          <p>
+            На працягу стагодзьдзяў беларуская культура не раз станавілася
+            мішэньню русіфікацыі і імпэрскай палітыкі, але працягвала жыць у
+            слове, песьні і народнай памяці.
+          </p>
+
+          <p>
+            Сёньня, як і раней, мы ўспамінаем ня толькі сваіх продкаў, але і
+            тых, хто ўжо ніколі не вярнецца дадому, хто прысьвяціў сябе Беларусі
+            і застаўся ў нашай памяці. Няхай гэтая музыка стане яшчэ адной ціхай
+            лампадкай у іх гонар.
+          </p>
+
+          <p>
+            Сьветлай памяці продкам і ўсім беларусам, якія жылі, змагаліся і
+            стваралі дзеля Бацькаўшчыны. 🕯️🍂
+          </p>
+        </div>
+      </div>
+      <!-- right -->
+    </div>
+    <!-- layout -->
+
+    <script>
+      const tracks = [
+        {
+          title: "01. НА ДЗЯДЫ",
+          author: "Паводле матываў паэмы «Дзяды» Адама Міцкевіча",
+          url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/7ff496dd-87ab-48a7-a8a1-55985f8daa9d.mp3",
+        },
+
+        {
+          title: "02. ОЙ, СКАЖЫ МНЕ, ВЕЦЕР ВОЛЬНЫ...",
+          author: "Якуб Колас",
+          url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/0e39ec74-36e9-4fdf-938b-54945362491c.mp3",
+        },
+
+        {
+          title: "03. СОХНУ МАРНА Я Ў АСТРОЗЕ...",
+          author: "Якуб Колас",
+          url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/1f62db18-11ab-497e-a0d8-e1ea0885cf82.mp3",
+        },
+
+        {
+          title: "04. НА ЛЕДЗЯНОЙ ГІТАРЫ",
+          author: "Тодар Кляшторны",
+          url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/6450ca26-bd43-40ef-9557-6734ca3e5689.mp3",
+        },
+
+        {
+          title: "05. ГАДАНЬНЕ",
+          author: "Цётка",
+          url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/f6692ab8-3729-4ffd-9aa5-4533658da976.mp3",
+        },
+
+        {
+          title: "06. НЕ ПРАШУ!",
+          author: "Ларыса Геніюш",
+          url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/826f3dad-9958-40bc-8997-206828f84338.mp3",
+        },
+
+        {
+          title: "07. БЫЎ. ЁСЬЦЬ. БУДУ...",
+          author: "Уладзімер Караткевіч",
+          url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/4a34303a-c171-44c9-aae1-b2269a475cc5.mp3",
+        },
+      ];
+
+      const player = document.getElementById("player");
+      const playlist = document.getElementById("playlist");
+      const currentTrack = document.getElementById("currentTrack");
+
+      let current = 0;
+
+      function loadTrack(index) {
+        current = index;
+
+        player.src = tracks[index].url;
+
+        currentTrack.textContent =
+          tracks[index].title + " — " + tracks[index].author;
+
+        document.querySelectorAll(".track").forEach((el, i) => {
+          el.classList.toggle("active", i === index);
+        });
+      }
+
+      tracks.forEach((track, index) => {
+        const div = document.createElement("div");
+
+        div.className = "track";
+
+        div.innerHTML =
+          "<strong>" +
+          track.title +
+          "</strong><br>" +
+          "<span class='author'>" +
+          track.author +
+          "</span>";
+
+        div.onclick = () => {
+          loadTrack(index);
+          player.play();
+        };
+
+        playlist.appendChild(div);
+      });
+
+      player.addEventListener("ended", () => {
+        if (current < tracks.length - 1) {
+          loadTrack(current + 1);
+        } else {
+          loadTrack(0);
+        }
+
+        player.play();
+      });
+
+      loadTrack(0);
+      const canvas = document.getElementById("visualizer");
+      const ctx = canvas.getContext("2d");
+      canvas.width = canvas.parentElement.offsetWidth;
+      canvas.height = 80;
+
+      const gap = 2;
+      const barWidth = 3;
+      const bars = Math.floor(canvas.width / (barWidth + gap));
+
+      const values = Array(bars).fill(20);
+
+      function drawVisualizer() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < bars; i++) {
+          values[i] += (Math.random() - 0.5) * 6;
+
+          values[i] = Math.max(8, Math.min(70, values[i]));
+
+          const h = values[i];
+
+          ctx.fillStyle = "#d8b36a";
+
+          ctx.fillRect(
+            i * (barWidth + gap) - 10,
+            canvas.height - h,
+            barWidth,
+            h,
+          );
+        }
+        requestAnimationFrame(drawVisualizer);
+      }
+
+      drawVisualizer();
+    </script>
+  </body>
+</html>
