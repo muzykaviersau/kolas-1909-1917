@@ -67,15 +67,16 @@
       .track-marquee span {
         position: absolute;
         white-space: nowrap;
-        animation: marquee 20s linear infinite;
       }
-      @keyframes marquee {
+      @keyframes trackIntro {
         from {
           transform: translateX(100%);
+          opacity: 0;
         }
 
         to {
-          transform: translateX(-120%);
+          transform: translateX(0);
+          opacity: 1;
         }
       }
       .track {
@@ -86,11 +87,10 @@
         cursor: pointer;
         color: #f5f5f5;
         width: 100%;
+        height: 48px;
         box-sizing: border-box;
-        min-height: 15px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        align-items: center;
       }
       .track strong {
         display: block;
@@ -160,7 +160,7 @@
 
         margin: 1px auto;
 
-        padding: 28% 4% 10% 20%;
+        padding: 28% 4% 5% 20%;
 
         color: #f0f0f0;
         font-family: Inter;
@@ -380,19 +380,19 @@
     <script>
       const tracks = [
         {
-          title: "01. СОХНУ МАРНА Я Ў АСТРОЗЕ...",
+          title: "СОХНУ МАРНА Я Ў АСТРОЗЕ...",
           author: "Якуб Колас",
           url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/1f62db18-11ab-497e-a0d8-e1ea0885cf82.mp3",
         },
 
         {
-          title: "02. ОЙ, СКАЖЫ МНЕ, ВЕЦЕР ВОЛЬНЫ...",
+          title: "ОЙ, СКАЖЫ МНЕ, ВЕЦЕР ВОЛЬНЫ...",
           author: "Якуб Колас",
           url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/0e39ec74-36e9-4fdf-938b-54945362491c.mp3",
         },
 
         {
-          title: "03. БУДЗЬ ЦЬВЁРДЫ",
+          title: "БУДЗЬ ЦЬВЁРДЫ",
           author: "Якуб Колас",
           url: "https://pub-e3a8ac85fed848229fd7494849f08867.r2.dev/audio/febf2a5f-dfa0-43e9-ad55-e14c018a6d9a.mp3",
         },
@@ -409,8 +409,11 @@
 
         player.src = tracks[index].url;
 
-        currentTrack.textContent =
-          tracks[index].title + " — " + tracks[index].author;
+        currentTrack.textContent = tracks[index].title;
+
+        currentTrack.style.animation = "none";
+        currentTrack.offsetHeight;
+        currentTrack.style.animation = "trackIntro 2s ease-out forwards";
 
         document.querySelectorAll(".track").forEach((el, i) => {
           el.classList.toggle("active", i === index);
@@ -424,11 +427,10 @@
 
         div.innerHTML =
           "<strong>" +
+          String(index + 1).padStart(2, "0") +
+          ". " +
           track.title +
-          "</strong><br>" +
-          "<span class='author'>" +
-          track.author +
-          "</span>";
+          "</strong>";
 
         div.onclick = () => {
           loadTrack(index);
