@@ -290,8 +290,8 @@
         }
         .project-brand {
           position: fixed;
-          left: 10px;
-          bottom: 85px;
+          left: 30px;
+          bottom: 105px;
           gap: 10px;
           transition:
             bottom 0.5s ease,
@@ -625,9 +625,21 @@
 
       brand.addEventListener("mouseenter", showSocials);
       brand.addEventListener("mouseleave", hideSocials);
+      //window.addEventListener("scroll", () => {
+      //const description = document.querySelector(".description");
+      // const rect = description.getBoundingClientRect();
+
+      //  if (rect.bottom < window.innerHeight + 70) {
+      //   brand.classList.add("poem-ending");
+      //} else {
+      //  brand.classList.remove("poem-ending");
+      // }
+      //});
       window.addEventListener("scroll", () => {
         const description = document.querySelector(".description");
         const rect = description.getBoundingClientRect();
+
+        currentTrack.textContent = "bottom=" + Math.round(rect.bottom);
 
         if (rect.bottom < window.innerHeight + 70) {
           brand.classList.add("poem-ending");
