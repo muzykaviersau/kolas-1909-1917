@@ -47,7 +47,7 @@
       }
       .player {
         width: 100%;
-        margin: 50px 0;
+        margin: 47px 0;
       }
       #currentTrack {
         color: #d9c39a;
@@ -212,7 +212,9 @@
         border-radius: 12px;
         flex-shrink: 0;
       }
-
+      .ig-link {
+        transform: translateY(-18px);
+      }
       .hero-info {
         flex: 1;
         display: flex;
@@ -276,7 +278,20 @@
           background-size: cover;
           background-position: center;
         }
+        .project-brand {
+          left: 12px;
+          bottom: 12px;
+          gap: 10px;
+        }
 
+        .social-icons img {
+          width: 18px;
+          height: 18px;
+        }
+
+        .mv-logo {
+          height: 26px;
+        }
         h1 {
           font-size: 42px;
         }
@@ -284,6 +299,87 @@
         h2 {
           font-size: 28px;
         }
+      }
+      .project-brand {
+        position: fixed;
+        left: 14px;
+        bottom: 90px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        opacity: 0.55;
+        z-index: 999;
+      }
+
+      .project-brand:hover {
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+      }
+
+      .social-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        transform: translateY(-22px) translateX(20px);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+
+        pointer-events: none;
+      }
+
+      .social-icons img {
+        width: 20px;
+        height: 20px;
+        display: block;
+      }
+
+      .mv-logo {
+        height: 90px;
+        width: auto;
+      }
+
+      .project-brand.social-open .social-icons {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-22px) translateX(0);
+        pointer-events: auto;
+      }
+      /* Навядзенне на МВ */
+
+      .project-brand:has(.mv-logo:hover) .social-icons img {
+        opacity: 1;
+      }
+
+      .project-brand:has(.mv-logo:hover) .mv-logo {
+        opacity: 0.25;
+      }
+
+      /* Навядзенне на Instagram */
+
+      .project-brand:has(.ig-link:hover) .ig-link img {
+        opacity: 1;
+      }
+
+      .project-brand:has(.ig-link:hover) .fb-link img,
+      .project-brand:has(.ig-link:hover) .mv-logo {
+        opacity: 0.25;
+      }
+
+      /* Навядзенне на Facebook */
+
+      .project-brand:has(.fb-link:hover) .fb-link img {
+        opacity: 1;
+      }
+
+      .project-brand:has(.fb-link:hover) .ig-link img,
+      .project-brand:has(.fb-link:hover) .mv-logo {
+        opacity: 0.25;
       }
     </style>
   </head>
@@ -376,7 +472,27 @@
       <!-- right -->
     </div>
     <!-- layout -->
+    <div class="project-brand">
+      <div class="social-icons">
+        <a
+          class="ig-link"
+          href="https://www.instagram.com/alehlazouski/"
+          target="_blank"
+        >
+          <img src="instagram-white.png" alt="Instagram" />
+        </a>
 
+        <a
+          class="fb-link"
+          href="https://www.facebook.com/muzykaviersau"
+          target="_blank"
+        >
+          <img src="facebook-white.png" alt="Facebook" />
+        </a>
+      </div>
+
+      <img src="avatar MV-белы.png" alt="Музыка Вершаў" class="mv-logo" />
+    </div>
     <script>
       const tracks = [
         {
@@ -485,6 +601,24 @@
       }
 
       drawVisualizer();
+
+      const brand = document.querySelector(".project-brand");
+
+      let hideTimer;
+
+      function showSocials() {
+        clearTimeout(hideTimer);
+        brand.classList.add("social-open");
+      }
+
+      function hideSocials() {
+        hideTimer = setTimeout(() => {
+          brand.classList.remove("social-open");
+        }, 5000);
+      }
+
+      brand.addEventListener("mouseenter", showSocials);
+      brand.addEventListener("mouseleave", hideSocials);
     </script>
   </body>
 </html>
