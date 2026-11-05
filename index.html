@@ -636,12 +636,7 @@
       // }
       //});
       window.addEventListener("scroll", () => {
-        const description = document.querySelector(".description");
-        const rect = description.getBoundingClientRect();
-
-        currentTrack.textContent = "bottom=" + Math.round(rect.bottom);
-
-        if (rect.bottom < window.innerHeight + 70) {
+        if (window.scrollY > 1200) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
