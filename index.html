@@ -289,6 +289,8 @@
           display: none;
         }
         .right {
+          width: 100%;
+          transform: none;
           flex: 2;
         }
         .track strong {
@@ -307,11 +309,12 @@
           display: none;
         }
         .description {
-          width: calc(100% - 20px);
+          width: 100%;
           max-width: none;
+          box-sizing: border-box;
           margin: 20px 0;
           padding: 40px 25px;
-          font-size: 26px;
+          font-size: 15px;
           line-height: 1.8;
           border-right: none;
           background-size: cover;
