@@ -510,7 +510,7 @@
             Залатая каса...
           </p>
 
-          <p>
+          <p class="last-stanza">
             Эх, аджыў ты свой век,<br />
             Жоўты ліст-бедачок,<br />
             А на весну цябе<br />
@@ -670,8 +670,12 @@
 
       brand.addEventListener("mouseenter", showSocials);
       brand.addEventListener("mouseleave", hideSocials);
+      const lastStanza = document.querySelector(".last-stanza");
+
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 1600) {
+        const rect = lastStanza.getBoundingClientRect();
+
+        if (rect.top < window.innerHeight * 0.7) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
