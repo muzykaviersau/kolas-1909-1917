@@ -320,15 +320,24 @@
         .project-brand {
           position: fixed;
           left: 30px;
-          bottom: 130px;
+          bottom: 30px;
+
           gap: 10px;
+
+          opacity: 0;
+          visibility: hidden;
+
           transition:
-            bottom 0.5s ease,
-            left 0.5s ease;
+            opacity 0.6s ease,
+            transform 0.6s ease;
+
+          transform: translateY(30px);
         }
         .project-brand.poem-ending {
-          left: 30px;
-          bottom: 30px;
+          opacity: 0.55;
+          visibility: visible;
+
+          transform: translateY(0);
         }
         .social-icons img {
           width: 18px;
@@ -662,7 +671,7 @@
       brand.addEventListener("mouseenter", showSocials);
       brand.addEventListener("mouseleave", hideSocials);
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 1200) {
+        if (window.scrollY > 1600) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
