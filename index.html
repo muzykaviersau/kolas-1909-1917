@@ -289,6 +289,8 @@
           display: none;
         }
         .right {
+          width: 100%;
+          transform: none;
           flex: 2;
         }
         .track strong {
@@ -310,7 +312,7 @@
           width: auto;
           max-width: none;
           margin: 20px 0;
-          padding: 40px 60px 70px 20px;
+          padding: 40px 20px 70px 20px;
           font-size: 18px;
           line-height: 1.8;
           border-right: none;
@@ -670,7 +672,7 @@
       window.addEventListener("scroll", () => {
         console.log(window.scrollY);
 
-        if (window.scrollY > 1200) {
+        if (window.scrollY > 500) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
