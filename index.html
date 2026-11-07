@@ -682,7 +682,7 @@
       window.addEventListener("scroll", () => {
         const rect = lastStanza.getBoundingClientRect();
 
-        if (rect.bottom < window.innerHeight) {
+        if (rect.bottom < window.innerHeight - 50) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
