@@ -680,9 +680,9 @@
       const lastStanza = document.querySelector(".last-stanza");
 
       window.addEventListener("scroll", () => {
-        console.log(window.scrollY);
+        const rect = lastStanza.getBoundingClientRect();
 
-        if (window.scrollY > 500) {
+        if (rect.bottom < window.innerHeight) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
