@@ -27,6 +27,21 @@
       rel="stylesheet"
     />
     <style>
+      @font-face {
+        font-family: "CormorantLocal";
+        src: url("cormorant-garamond-v21-cyrillic_latin-regular.woff2")
+          format("woff2");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "CormorantLocal";
+        src: url("cormorant-garamond-v21-cyrillic_latin-600.woff2")
+          format("woff2");
+        font-weight: 600;
+        font-style: normal;
+      }
       body {
         background:
           radial-gradient(
@@ -237,6 +252,7 @@
         align-items: flex-start;
       }
       .title {
+        font-family: "CormorantLocal", serif;
         font-size: 82px;
         font-weight: 700;
         color: #d9c39a;
@@ -453,7 +469,7 @@
         }
 
         .mobile-author {
-          font-family: "Cormorant", serif;
+          font-family: "CormorantLocal", serif;
           font-weight: 600;
           font-size: 22px;
           color: #d9c39a;
@@ -462,7 +478,7 @@
           display: none;
         }
         .mobile-years {
-          font-family: "Cormorant", serif;
+          font-family: "CormorantLocal", serif;
           font-size: 14px;
           color: #bfbfbf;
           line-height: 1.4;
@@ -521,12 +537,15 @@
           display: none;
         }
         .description {
+          height: auto;
+          min-height: 890px;
           width: calc(100vw - 30px);
           max-width: 380px;
           margin-left: auto;
           margin-right: auto;
           box-sizing: border-box;
-
+          overflow: visible;
+          height: auto;
           padding: 40px 20px 70px 20px;
 
           font-size: 18px;
