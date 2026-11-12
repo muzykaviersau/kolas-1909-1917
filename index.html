@@ -451,7 +451,6 @@
           padding-right: 0;
           width: 100%;
           flex: none;
-          flex: none;
         }
         .hero {
           display: block;
@@ -515,7 +514,6 @@
           display: none;
         }
         .right {
-          transform: none;
           width: 100%;
           max-width: 100%;
           transform: none;
@@ -564,14 +562,20 @@
 
           transition: opacity 0.8s ease;
         }
+        .project-brand {
+          left: 12px;
+          bottom: 12px;
+        }
 
         .social-icons img {
           width: 18px;
           height: 18px;
         }
-
+        .project-brand.poem-ending {
+          opacity: 0.3;
+        }
         .mv-logo {
-          height: 26px;
+          height: 22px;
         }
         h1 {
           font-size: 42px;
@@ -817,7 +821,7 @@
               Ськіне новы лісток.
             </p>
 
-            <p style="text-align: right">22/X 1910</p>
+            <p class="poem-end-date" style="text-align: right">22/X 1910</p>
           </div>
         </div>
       </div>
@@ -972,13 +976,14 @@
 
       brand.addEventListener("mouseenter", showSocials);
       brand.addEventListener("mouseleave", hideSocials);
-      brand.classList.add("poem-ending");
+
       const lastStanza = document.querySelector(".last-stanza");
+      const trigger = document.querySelector(".poem-end-date");
 
       window.addEventListener("scroll", () => {
-        const rect = lastStanza.getBoundingClientRect();
+        const rect = trigger.getBoundingClientRect();
 
-        if (rect.top < window.innerHeight * 0.8) {
+        if (rect.top < window.innerHeight * 0.9) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
