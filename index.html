@@ -410,7 +410,7 @@
         z-index: 999;
       }
       .project-brand.poem-ending {
-        opacity: 0.55;
+        opacity: 0.4;
         visibility: visible;
       }
       .hero-info h1 {
@@ -656,6 +656,12 @@
       .mv-logo {
         height: 90px;
         width: auto;
+
+        opacity: 0.6;
+
+        transition:
+          opacity 0.3s ease,
+          filter 0.3s ease;
       }
 
       .project-brand.social-open .social-icons {
@@ -671,7 +677,9 @@
       }
 
       .project-brand:has(.mv-logo:hover) .mv-logo {
-        opacity: 0.25;
+        opacity: 1;
+
+        filter: brightness(1.2) drop-shadow(0 0 8px rgba(216, 179, 106, 0.35));
       }
 
       /* Навядзенне на Instagram */
@@ -697,14 +705,14 @@
       }
       .project-note .heritage {
         font-size: 8px;
-        color: rgba(217, 195, 154, 0.45);
+        color: rgba(217, 195, 154, 0.6);
         letter-spacing: 0.5px;
       }
 
       .project-note .project-credit {
         margin-top: 8px;
         font-size: 10px;
-        color: rgba(181, 181, 181, 0.4);
+        color: rgba(181, 181, 181, 0.55);
       }
 
       .project-note .project-credit a {
@@ -855,7 +863,13 @@
         </a>
       </div>
 
-      <img src="avatar MV-белы.png" alt="Музыка Вершаў" class="mv-logo" />
+      <a href="https://muzykaviersau.github.io/bibliateka/">
+        <img
+          src="avatar MV-белы.png"
+          alt="Бібліятэка Музыкі Вершаў"
+          class="mv-logo"
+        />
+      </a>
     </div>
     <script>
       const tracks = [
