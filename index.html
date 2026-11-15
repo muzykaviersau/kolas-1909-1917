@@ -43,19 +43,15 @@
         font-style: normal;
       }
       body {
-        background:
-          radial-gradient(
-            circle at 20% 20%,
-            rgba(210, 150, 60, 0.15),
-            transparent 40%
-          ),
-          radial-gradient(
-            circle at 80% 40%,
-            rgba(210, 150, 60, 0.1),
-            transparent 30%
-          ),
-          #080808;
         min-height: 100vh;
+
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)),
+          url("kolas-bg.webp");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
       }
       h2 {
         color: #d8b36a;
@@ -73,7 +69,7 @@
         width: 1000px;
         max-width: none;
 
-        opacity: 0.12;
+        opacity: 0;
 
         filter: brightness(0.35);
 
@@ -380,6 +376,13 @@
         padding-left: 10px;
       }
       .project-brand {
+        background: radial-gradient(
+          circle,
+          rgba(0, 0, 0, 0.25),
+          rgba(0, 0, 0, 0)
+        );
+
+        padding: 6px 8px;
         position: fixed;
         left: 14px;
         bottom: 90px;
@@ -392,7 +395,7 @@
         z-index: 999;
       }
       .project-brand.poem-ending {
-        opacity: 0.4;
+        opacity: 1;
         visibility: visible;
       }
       .social-icons {
@@ -733,7 +736,6 @@
   <body>
     <div class="layout">
       <div class="left">
-        <img src="bryl.png" class="bryl-bg" alt="" />
         <div class="hero">
           <img src="cover.jpg" class="mini-cover" />
 
