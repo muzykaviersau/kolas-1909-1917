@@ -89,18 +89,6 @@
 
         z-index: 2;
       }
-      .player-container {
-        position: relative;
-        z-index: 2;
-      }
-      .track-list {
-        position: relative;
-        z-index: 2;
-      }
-      .cover-container {
-        position: relative;
-        z-index: 2;
-      }
       .player {
         width: 100%;
         margin-top: 25px;
@@ -179,11 +167,6 @@
         box-shadow:
           0 0 18px rgba(193, 139, 58, 0.45),
           0 0 30px rgba(193, 139, 58, 0.2);
-      }
-
-      .author {
-        color: #d8c5a0;
-        font-size: 0.9em;
       }
       #playlist {
         margin-top: 0px;
@@ -295,7 +278,6 @@
         font-family: Inter, sans-serif;
         font-weight: 300;
         font-size: 13px;
-        font-weight: 300;
         line-height: 1.65;
         letter-spacing: 0px;
         background:
@@ -413,6 +395,23 @@
         opacity: 0.4;
         visibility: visible;
       }
+      .social-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        transform: translateY(-22px) translateX(20px);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+
+        pointer-events: none;
+      }
+
       .hero-info h1 {
         padding-left: 40px;
         margin: 0 0 10px;
@@ -537,14 +536,14 @@
           display: none;
         }
         .description {
-          height: auto;
           min-height: 890px;
           width: calc(100vw - 30px);
           max-width: 380px;
           margin-left: auto;
           margin-right: auto;
+          margin-top: -40px;
           box-sizing: border-box;
-          overflow: visible;
+          overflow: hidden;
           height: auto;
           padding: 40px 20px 70px 20px;
 
@@ -557,16 +556,12 @@
         }
         .project-brand {
           position: fixed;
-          left: 30px;
-          bottom: 30px;
+          left: 40px;
+          bottom: 12px;
 
           gap: 10px;
 
           transition: opacity 0.8s ease;
-        }
-        .project-brand {
-          left: 12px;
-          bottom: 12px;
         }
 
         .social-icons img {
@@ -574,7 +569,7 @@
           height: 18px;
         }
         .project-brand.poem-ending {
-          opacity: 0.3;
+          opacity: 0.55;
         }
         .mv-logo {
           height: 22px;
@@ -624,29 +619,39 @@
         .divider-line {
           display: none;
         }
+        .social-icons {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+        .description::after {
+          content: "";
+          position: absolute;
+
+          left: 0;
+          right: 0;
+          bottom: 0;
+
+          height: 80px;
+
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.95)
+          );
+
+          pointer-events: none;
+        }
       }
 
       .project-brand:hover {
         transition: opacity 0.3s ease;
       }
-
-      .social-icons {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-
-        transform: translateY(-22px) translateX(20px);
-
-        opacity: 0;
-        visibility: hidden;
-
-        transition:
-          opacity 0.35s ease,
-          transform 0.35s ease;
-
-        pointer-events: none;
-      }
-
       .social-icons img {
         width: 20px;
         height: 20px;
@@ -997,14 +1002,12 @@
 
       brand.addEventListener("mouseenter", showSocials);
       brand.addEventListener("mouseleave", hideSocials);
-
-      const lastStanza = document.querySelector(".last-stanza");
       const trigger = document.querySelector(".poem-end-date");
 
       window.addEventListener("scroll", () => {
         const rect = trigger.getBoundingClientRect();
 
-        if (rect.top < window.innerHeight * 0.9) {
+        if (rect.top <= window.innerHeight) {
           brand.classList.add("poem-ending");
         } else {
           brand.classList.remove("poem-ending");
